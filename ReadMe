@@ -1,0 +1,380 @@
+# 🚀 Capstone Automation Framework
+
+This repository contains a **Hybrid Test Automation Framework** built using **Java, Selenium, TestNG, Maven, Rest Assured, and Extent Reports**.
+It covers both **UI Automation** and **API Automation** scenarios with a modular, scalable, and reusable design.
+
+🔗 **GitHub Repository:**
+https://github.com/ne20641570/CapstoneFramework
+
+---
+
+# 📌 Project Overview
+
+This Capstone project includes:
+
+## 🔹 UI Automation (Selenium)
+
+* Automated BSE India website scenarios
+* Page Object Model (POM) implementation
+* Excel-based data handling
+* Dynamic waits & exception handling
+* Screenshot capture on failures
+* Extent Reporting
+
+## 🔹 API Automation (Rest Assured)
+
+* CRUD operations for Google Maps APIs
+* Reusable request/response handling
+* Logging and validation
+* Extent Reports integration
+
+
+---
+
+## 🔹Database Automation (JDBC + MySQL)
+
+Implements full database validation and CRUD operations using DAO pattern:
+
+✔ Features Implemented:
+* Create table (if not exists)
+* Insert user (dynamic test data)
+* Read all users
+* Read user by username
+* Read user by ID
+* Update user address
+* Patch user phone number
+* Delete user
+* Random data selection for validation
+* Extent logging for every DB operation
+
+
+# 🏗️ Framework Architecture
+
+* **Design Pattern:** Page Object Model (POM)
+* **Build Tool:** Maven
+* **Test Runner:** TestNG
+* **Reporting:** Extent Reports
+* **Data Handling:** Excel (Apache POI)
+* **Configuration:** Properties file
+* **Database:** MySQL (via JDBC)
+
+---
+
+# 📂 Project Structure
+
+```
+CapstoneFramework
+│
+├── reports/
+│   ├── extentReports/
+│   │   ├── 20260325_17/
+│   │   ├── 20260326_10/
+│   │   │   └── report.html
+│   ├── screenshots/
+│
+├── src/
+│   ├── main/java/
+│   │   ├── api/
+│   │   │   ├── client/          # API Client logic
+│   │   │   ├── endpoints/       # API routes
+│   │   │   ├── payloads/        # Request bodies
+│   │   │
+│   │   ├── base/ui/
+│   │   │   ├── BasePage
+│   │   │   ├── BaseTest
+│   │   │   ├── DriverFactory
+│   │   │
+│   │   ├── config/
+│   │   │   ├── ConfigReader
+│   │   │   ├── DBConfig
+│   │   │   ├── FrameworkConstants
+│   │   │
+│   │   ├── db/
+│   │   │   ├── client/DbClient
+│   │   │   ├── dao/UserDao
+│   │   │   ├── model/User
+│   │   │   ├── queries/UserQueries
+│   │   │
+│   │   ├── enums/
+│   │   │   └── BrowserType
+│   │   │
+│   │   ├── listeners/
+│   │   │   └── TestListener
+│   │   │
+│   │   ├── pages/
+│   │   │   ├── HomePage
+│   │   │   ├── MarketsPage
+│   │   │   ├── MarketWatchPage
+│   │   │
+│   │   ├── utils/
+│   │       ├── DBUtils
+│   │       ├── ExcelUtils
+│   │       ├── ExtentManager
+│   │       ├── ExtentReportUtil
+│   │       ├── ExtentTestManager
+│   │       ├── FileUtils
+│   │       ├── RetryAnalyzer
+│   │       ├── ScreenshotUtils
+│   │       ├── TestDataGenerator
+│   │       ├── UIActions
+│   │       ├── WaitUtils
+│
+│   ├── test/java/
+│   │   ├── api/
+│   │   │   └── GoogleMapsTest
+│   │   ├── db/
+│   │   │   └── UserDbTest
+│   │   ├── ui/
+│   │       └── BseIndiaTest
+│
+│   ├── test/resources/
+│       ├── config.properties
+│       └── testdata.xlsx
+│
+├── pom.xml
+├── testng-api.xml
+├── testng-db.xml
+├── testng-ui.xml
+├── JenkinsFile
+└── .gitignore
+```
+
+---
+
+# ⚙️ Setup Instructions
+
+## 1️⃣ Prerequisites
+
+* Java 8+
+* Maven installed
+* Chrome browser
+* ChromeDriver configured
+* MySQL DB setup
+
+---
+
+## 2️⃣ Clone Repository
+
+```bash
+git clone https://github.com/ne20641570/CapstoneFramework.git
+cd CapstoneFramework
+```
+
+---
+
+## 3️⃣ Install Dependencies
+
+```bash
+mvn clean install
+```
+
+---
+
+# ▶️ Running Tests
+
+## 🔹 Run UI Tests
+
+```bash
+mvn test -DsuiteXmlFile=testng-ui.xml
+```
+
+## 🔹 Run API Tests
+
+```bash
+mvn test -DsuiteXmlFile=testng-api.xml
+```
+
+## 🔹 Run DB Tests
+
+```bash
+mvn test -DsuiteXmlFile=testng-db.xml
+```
+
+---
+
+# 🌐 UI Automation Scenarios
+
+### BSE India Website
+
+https://www.bseindia.com/
+
+### ✔ Implemented Flows:
+
+* Login to application
+* Navigate to Market Watch
+* Capture instruments → Excel
+* Group by:
+
+  * Type of Instrument
+  * Underlying
+* Identify:
+
+  * Highest Notional Turnover per group
+* Heat Map Analysis:
+
+  * Gain vs Loss indexes
+  * Highest gaining index
+  * Highest losing index
+  * Indexes gaining > 50 points
+
+---
+
+# 🔌 API Automation Scenarios
+
+### Base URL:
+
+```
+https://rahulshettyacademy.com
+```
+
+### ✔ APIs Covered:
+
+#### 1. Add Place (POST)
+
+* Creates new location
+* Extracts `place_id`
+
+#### 2. Get Place (GET)
+
+* Fetches location details
+
+#### 3. Update Place (PUT)
+
+* Updates address
+
+#### 4. Delete Place (DELETE)
+
+* Removes place
+
+---
+🧪 Database Automation Details
+📁 Test Class:
+
+UserDbTest.java
+
+✔ Test Scenarios Covered:
+---------------------------------------------------------
+Test Case           |   	Description
+---------------------------------------------------------
+createTable	        |   Creates Users table if not exists
+createUser	        |   Inserts user with random data
+readAllUsers	    |   Fetch all users
+readUserByName	    |   Validate user exists
+readUserById	    |   Fetch user using ID
+updateUserAddress   |   Update address fields
+patchUserPhone	    |   Update only phone number
+deleteUser	        |   Delete user from DB
+---------------------------------------------------------
+
+--------------------
+🔹 Key Highlights
+--------------------
+
+🔁 Random Data Generation
+Uses TestDataGenerator
+
+🎯 Dynamic Validation
+Random user selection
+
+📊 Detailed Logging
+Every step logged in Extent Reports
+
+⚠️ Exception Handling
+Try-catch with failure logging
+
+🔄 Thread-safe execution
+Uses ThreadLocalRandom for data generation
+
+-------------------
+
+# 📊 Reporting
+
+* Extent Reports generated at:
+
+```
+/reports/extentReports/
+```
+
+### Features:
+
+* Step-level logging
+* Screenshots on failure
+* Test execution summary
+
+---
+
+# 📸 Screenshots
+
+* Automatically captured on test failures
+* Stored in:
+
+```
+/reports/screenshots/
+```
+
+---
+
+# 📁 Data Management
+
+## 🔹 Configuration
+
+* Stored in `config.properties`
+* Includes:
+
+  * URLs
+  * Credentials
+
+## 🔹 Test Data
+
+* Stored in Excel:
+
+```
+testdata.xlsx
+```
+
+* Used via TestNG DataProvider
+
+---
+
+# ⏳ Wait Strategy
+
+* Explicit waits implemented
+* No hardcoded waits
+* Utility: `WaitUtils`
+
+---
+
+# ⚠️ Exception Handling
+
+* Try-catch blocks in critical flows
+* Logging via Extent Reports
+* Retry mechanism implemented
+
+---
+
+# 🔁 Retry Mechanism
+
+* Failed tests retried automatically
+* Implemented using `RetryAnalyzer`
+
+---
+
+# 🧪 Key Utilities
+
+| Utility Class   | Purpose               |
+| --------------- | --------------------- |
+| DriverFactory   | WebDriver management  |
+| ExcelUtils      | Excel read/write      |
+| ScreenshotUtils | Capture screenshots   |
+| WaitUtils       | Explicit waits        |
+| ExtentManager   | Report initialization |
+| DBUtils         | Database operations   |
+
+---
+
+
+# 👨‍💻 Author
+
+**Neelanjana K**
+Automation Test Engineer
+---
