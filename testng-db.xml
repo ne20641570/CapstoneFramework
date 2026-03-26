@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="DataBase Suite">
+
+    <test name="DataBase Tests">
+        <packages>
+            <!-- Only DB tests package -->
+            <package name="db"/>
+        </packages>
+    </test>
+
+</suite>

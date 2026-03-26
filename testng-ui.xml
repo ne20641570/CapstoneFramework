@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="UI automation Suite">
+
+    <test name="UI Tests">
+        <packages>
+            <!-- Only UI tests package -->
+            <package name="ui"/>
+        </packages>
+    </test>
+
+</suite>
